@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YoungDollazz | Twinimons Card</title>
+  <link rel="icon" href="assets/youngdollazz.png" type="image/png">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#080b11">
+  <style>
+    :root {
+      --bg-color: #080b11;
+      --card-bg: #111723;
+      --card-border: #1e2d4a;
+      --text-primary: #f0f4f8;
+      --text-secondary: #8e9bb0;
+      --accent: #00d2ff;
+      --btn-bg: #182030;
+      --btn-hover: #222e45;
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      font-family: var(--font-stack);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      line-height: 1.5;
+    }
+
+    .water-background {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 10%;
+      background: linear-gradient(to bottom, rgba(0, 210, 255, 0.3) 0%, rgba(11, 25, 40, 0.85) 25%, rgba(8, 11, 17, 0.98) 100%);
+      z-index: -1;
+      pointer-events: none;
+      will-change: height;
+    }
+
+    .waves-container {
+      position: absolute;
+      top: -60px;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      overflow: hidden;
+    }
+
+    .waves {
+      width: 100%;
+      height: 100%;
+    }
+
+    .parallax > use:nth-child(1) {
+      animation: wave-motion-1 14s linear infinite;
+    }
+    .parallax > use:nth-child(2) {
+      animation: wave-motion-2 10s linear infinite;
+    }
+    .parallax > use:nth-child(3) {
+      animation: wave-motion-3 8s linear infinite;
+    }
+    .parallax > use:nth-child(4) {
+      animation: wave-motion-4 6s linear infinite;
+    }
+
+    @keyframes wave-motion-1 {
+      0% { transform: translate3d(-90px, 0, 0) scaleY(1); }
+      50% { transform: translate3d(0px, 3px, 0) scaleY(1.05); }
+      100% { transform: translate3d(85px, 0, 0) scaleY(1); }
+    }
+
+    @keyframes wave-motion-2 {
+      0% { transform: translate3d(85px, 0, 0) scaleY(0.95); }
+      50% { transform: translate3d(0px, -3px, 0) scaleY(1.04); }
+      100% { transform: translate3d(-90px, 0, 0) scaleY(0.95); }
+    }
+
+    @keyframes wave-motion-3 {
+      0% { transform: translate3d(-90px, 0, 0) scaleY(1.02); }
+      50% { transform: translate3d(0px, -2px, 0) scaleY(0.96); }
+      100% { transform: translate3d(85px, 0, 0) scaleY(1.02); }
+    }
+
+    @keyframes wave-motion-4 {
+      0% { transform: translate3d(85px, 0, 0) scaleY(1); }
+      50% { transform: translate3d(0px, 4px, 0) scaleY(1.08); }
+      100% { transform: translate3d(-90px, 0, 0) scaleY(1); }
+    }
+
+    .card {
+      background: rgba(17, 23, 35, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 400px;
+      padding: 40px 24px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 3px;
+      background: var(--accent);
+      box-shadow: 0 0 20px var(--accent);
+      border-radius: 50%;
+    }
+
+    .avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      border: 3px solid var(--card-border);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #111723;
+    }
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      letter-spacing: -0.5px;
+    }
+
+    .handle {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .bio {
+      color: var(--text-secondary);
+      font-size: 15px;
+      margin-bottom: 28px;
+      padding: 0 10px;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--btn-bg);
+      color: var(--text-primary);
+      text-decoration: none;
+      padding: 16px 20px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 15px;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .link-btn:hover {
+      background: var(--btn-hover);
+      border-color: var(--card-border);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    .link-btn:active {
+      transform: translateY(0);
+    }
+
+    .link-icon {
+      width: 18px;
+      height: 18px;
+      stroke: var(--text-secondary);
+      transition: stroke 0.2s ease, transform 0.2s ease;
+    }
+
+    .link-btn:hover .link-icon {
+      stroke: var(--text-primary);
+      transform: translateX(3px);
+    }
+
+    .footer {
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      justify-content: center;
+    }
+
+    .share-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .share-btn:hover {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--text-primary);
+      color: var(--bg-color);
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      z-index: 100;
+      pointer-events: none;
+    }
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #080b11;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #1e2d4a;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00d2ff;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="water-background" id="waterBg">
+    <div class="waves-container">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave-1" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+          <path id="gentle-wave-2" d="M-160 44c40 0 68-12 98-12s 48 12 88 12 58-12 88-12 58 12 88 12 v44h-352z" />
+          <linearGradient id="surface-glow" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#00d2ff" stop-opacity="0.45" />
+            <stop offset="100%" stop-color="#00d2ff" stop-opacity="0.05" />
+          </linearGradient>
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave-1" x="48" y="0" fill="rgba(0, 150, 210, 0.15)" />
+          <use xlink:href="#gentle-wave-2" x="48" y="3" fill="rgba(0, 180, 230, 0.2)" />
+          <use xlink:href="#gentle-wave-1" x="48" y="5" fill="rgba(0, 210, 255, 0.25)" />
+          <use xlink:href="#gentle-wave-2" x="48" y="7" fill="url(#surface-glow)" />
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <main class="card">
+    <div class="avatar">
+      <img src="assets/youngdollazz.png" alt="YoungDollazz Avatar">
+    </div>
+    <h1>YoungDollazz</h1>
+    <div class="handle">@youngdollazz1700</div>
+    <p class="bio">
+      🎶 Music Artist, 👤 Experienced Server Owner, ▶️ Content Creator, 🌐 Website Developer. ❤︎⁠ I have a Girlfriend. and I like to play games ˙✧˖°🎮 ⋆｡˚ or make money in my freetime! 💸₊˚⊹💲 ♡<br>
+      Im YoungDollazz🌊
+    </p>
+
+    <nav class="links">
+      <h2>「 ✦ CONTENT/MUSIC ✦ 」</h2>
+      <a href="https://www.youtube.com/@TheRealMayo_" target="_blank" rel="noopener noreferrer" class="link-btn">
+        <span>YouTube Channel</span>
+        <svg class="link-icon" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@YoungDollazz1700" target="_blank" rel="noopener noreferrer" class="link-btn">
+        <span>Music Channel</span>
+        <svg class="link-icon" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://yaktenz.github.io/mayonaise.gg/" target="_blank" rel="noopener noreferrer" class="link-btn">
+        <span>YouTube Website</span>
+        <svg class="link-icon" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://yaktenz.github.io/youngdollazz/" class="link-btn">
+        <span>Music Website</span>
+        <svg class="link-icon" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </nav>
+
+    <br>
+    
+    <nav class="links">
+      <h2>「 ✦ FAVOURITE SONGS ✦ 」</h2>
+      <a href="https://youtu.be/5zZB6KtAUb4?si=kqty398t7TdAZVjT" target="_blank" rel="noopener noreferrer" class="link-btn">
+        <span>Whatchu Know Bout Love</span>
+        <svg class="link-icon" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://youtu.be/kk7DuYfRK0I?si=wkAjnPyuAQA6lZ4k" target="_blank" rel="noopener noreferrer" class="link-btn">
+        <span>3.A.M</span>
+        <svg class="link-icon" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://youtu.be/p7uMUv8iGUM?si=abITbBgbHC9SYGSw" target="_blank" rel="noopener noreferrer" class="link-btn">
+        <span>Airplane Mode</span>
+        <svg class="link-icon" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </nav>
+
+    <br>
+
+    <nav class="links">
+      <h2>「 ✦ FAVOURITE GAMES ✦ 」</h2>
+      <a href="https://store.steampowered.com/app/489830/The_Elder_Scrolls_V_Skyrim_Special_Edition/" target="_blank" rel="noopener noreferrer" class="link-btn">
+        <span>TES V: Skyrim Special Edition</span>
+        <svg class="link-icon" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://store.steampowered.com/app/243470/Watch_Dogs/" target="_blank" rel="noopener noreferrer" class="link-btn">
+        <span>Watch Dogs</span>
+        <svg class="link-icon" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#" rel="noopener noreferrer" class="link-btn">
+        <span>Clash Of Clans</span>
+        <svg class="link-icon" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </nav>
+
+    <br>
+
+    <nav class="links">
+      <h2>「 ✦ MY PROJECTS ✦ 」</h2>
+      <a href="https://stadiastudios.github.io/ourjourney/splash" target="_blank" rel="noopener noreferrer" class="link-btn">
+        <span>OurJourney - Love Tracker</span>
+        <svg class="link-icon" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://stadiabeta.github.io/tool-panel/" target="_blank" rel="noopener noreferrer" class="link-btn">
+        <span>StadiaToolPanel - Online Tools</span>
+        <svg class="link-icon" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://grinderouz.github.io/clan/" target="_blank" rel="noopener noreferrer" class="link-btn">
+        <span>Grinderouz - COC Website</span>
+        <svg class="link-icon" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://twinimon-rolls.github.io/website/" target="_blank" noopener noreferrer" class="link-btn">
+        <span>Twinimon Rolls - Server Website</span>
+        <svg class="link-icon" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </nav>
+
+    <br>
+
+    <nav class="links">
+      <h2>「 ✦ MY SERVERS ✦ 」</h2>
+      <a href="http://discord.gg/Qgu2eCwRtW" target="_blank" rel="noopener noreferrer" class="link-btn">
+        <span>YouTube Community Server</span>
+        <svg class="link-icon" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://discord.gg/jEN9NNdA4v" target="_blank" rel="noopener noreferrer" class="link-btn">
+        <span>Clash Of Clans Server</span>
+        <svg class="link-icon" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </nav>
+
+    <br>
+    <p>「 ✦ CUSTOM ✦ 」 Card By ✮⋆˙ ℳ𝑒</p>
+
+    <div class="footer">
+      <button class="share-btn" id="shareBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="18" cy="5" r="3"/>
+          <circle cx="6" cy="12" r="3"/>
+          <circle cx="18" cy="19" r="3"/>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+        </svg>
+        Share this page
+      </button>
+    </div>
+  </main>
+
+  <div class="toast" id="toast">Link copied to clipboard!</div>
+
+  <script>
+    const shareBtn = document.getElementById('shareBtn');
+    const toast = document.getElementById('toast');
+    let toastTimeout;
+
+    shareBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        showToast('Link copied to clipboard!');
+      } catch (err) {
+        showToast('Page URL copied!');
+      }
+    });
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    const waterBg = document.getElementById('waterBg');
+    let targetHeight = 10;
+    let currentHeight = 10;
+
+    function calculateTargetWaterLevel() {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      let scrollPercent = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      const minWater = 10; 
+      targetHeight = minWater + (scrollPercent * (100 - minWater) / 100);
+    }
+
+    function animateWaterPhysics() {
+      currentHeight += (targetHeight - currentHeight) * 0.06;
+      waterBg.style.height = `${currentHeight}%`;
+      requestAnimationFrame(animateWaterPhysics);
+    }
+
+    window.addEventListener('scroll', calculateTargetWaterLevel, { passive: true });
+    window.addEventListener('resize', calculateTargetWaterLevel);
+    calculateTargetWaterLevel();
+    animateWaterPhysics();
+  </script>
+  
+  <script src="scripts/snowfall.js"></script>
+  <script src="scripts/rainfall.js"></script>
+
+</body>
+</html>
